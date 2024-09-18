@@ -1,0 +1,80 @@
+
+:root {
+    --bg-color: #0B131E;
+    --bg-combo-color:#202B3B;
+    --text-color: #F0F1F1;
+    --button-bg:#0095FF;
+    --button-text: white;
+  }
+  
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+
+/* Dark Mode Styles */
+body.light-mode {
+    --bg-color: #121212;
+    --text-color: white;
+    --card-bg: #1e1e1e;
+    --button-bg: #333;
+    --button-text: white;
+  }
+
+.umbrella{
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.btn-att{
+    background-color: var(--button-bg);
+    color: var(--button-text);
+  
+}
+
+
+
+
+.arrow-move {
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .btn:hover .arrow-move {
+    animation: slide-arrow 0.5s forwards ease-in-out; /* Play on hover */
+  }
+  @keyframes slide-arrow {
+    0% {
+      transform: translateX(0);   /* Start at normal position */
+      opacity: 1;
+    }
+    30% {
+      transform: translateX(100%); /* Move out of the right side */
+      opacity: 0;  /* Disappear */
+    }
+    50% {
+      transform: translateX(-100%); /* Reappear on the left side */
+      opacity: 0;  /* Still invisible */
+    }
+    70% {
+      transform: translateX(0);    /* Move back to original position */
+      opacity: 1;  /* Fully visible again */
+    }
+    100% {
+      transform: translateX(0);    /* Stay in original position */
+      opacity: 1;
+    }
+  }
+  
+  @media screen and (min-width:1024px) {
+    .umbrella{
+        border-radius: 25px;
+    background-color: var(--bg-combo-color);
+    align-items: center;
+    }
+  }
