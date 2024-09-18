@@ -88,6 +88,44 @@ body.light-mode {
   min-width: 74px;
 }
 
+.daily--forecast{
+
+display: flex;
+flex-direction: column;
+
+}
+
+.daily--forecast>.today--forecast{
+
+  background-color: var(--bg-combo-color);
+  border-radius: 15px;
+  padding: 12px;
+}
+
+.daily--forecast>.other--parameter{
+
+  background-color: var(--bg-combo-color);
+  border-radius: 15px;
+  padding: 12px;
+  margin-block: 1rem;
+}
+
+.search{
+
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  color: var(--text-color);
+  background-color: var(--bg-combo-color);
+
+}
+
+.search:focus{
+  
+  outline: none;
+}
+
+
 
   @media screen and (min-width:1024px) {
 
