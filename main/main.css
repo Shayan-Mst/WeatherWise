@@ -25,14 +25,9 @@ body.light-mode {
     --button-text: white;
   }
 
-.umbrella{
+  /* basic styles */
 
-    display: flex;
-    justify-content: center;
-    align-items: end;
-}
-
-.btn-att{
+  .btn-att{
     background-color: var(--button-bg);
     color: var(--button-text);
   
@@ -41,40 +36,66 @@ body.light-mode {
 
 
 
-.arrow-move {
-    transition: transform 0.5s ease-in-out;
-  }
+/* intro page */
+.umbrella{
 
-  .btn:hover .arrow-move {
-    animation: slide-arrow 0.5s forwards ease-in-out; /* Play on hover */
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+
+.arrow-move {
+  transition: transform 0.5s ease-in-out;
+}
+
+.btn:hover .arrow-move {
+  animation: slide-arrow 0.5s forwards ease-in-out; /* Play on hover */
+}
+@keyframes slide-arrow {
+  0% {
+    transform: translateX(0);   /* Start at normal position */
+    opacity: 1;
   }
-  @keyframes slide-arrow {
-    0% {
-      transform: translateX(0);   /* Start at normal position */
-      opacity: 1;
-    }
-    30% {
-      transform: translateX(100%); /* Move out of the right side */
-      opacity: 0;  /* Disappear */
-    }
-    50% {
-      transform: translateX(-100%); /* Reappear on the left side */
-      opacity: 0;  /* Still invisible */
-    }
-    70% {
-      transform: translateX(0);    /* Move back to original position */
-      opacity: 1;  /* Fully visible again */
-    }
-    100% {
-      transform: translateX(0);    /* Stay in original position */
-      opacity: 1;
-    }
+  30% {
+    transform: translateX(100%); /* Move out of the right side */
+    opacity: 0;  /* Disappear */
   }
-  
+  50% {
+    transform: translateX(-100%); /* Reappear on the left side */
+    opacity: 0;  /* Still invisible */
+  }
+  70% {
+    transform: translateX(0);    /* Move back to original position */
+    opacity: 1;  /* Fully visible again */
+  }
+  100% {
+    transform: translateX(0);    /* Stay in original position */
+    opacity: 1;
+  }
+}
+
+/* home page */
+
+.nav--bar{
+
+  background-color: var(--bg-combo-color);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 32px;
+  min-width: 74px;
+}
+
+
   @media screen and (min-width:1024px) {
+
+    /* intro page */
     .umbrella{
         border-radius: 25px;
     background-color: var(--bg-combo-color);
     align-items: center;
     }
+
   }
