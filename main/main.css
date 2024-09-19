@@ -8,8 +8,16 @@
     --button-text: white;
   }
   
+  
+
+   html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
 
   body {
+    
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: Arial, sans-serif;
@@ -157,6 +165,12 @@ padding: 8px 12px;
   
 }
 
+.current-location{
+
+  transform: rotate(45deg);
+  margin:0 12px;
+
+}
   @media screen and (min-width:1024px) {
 
     /* intro page */
