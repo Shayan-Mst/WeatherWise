@@ -146,6 +146,16 @@ border-radius: 12px;
 padding: 8px 12px;
 }
 
+/* City */
+
+.city--added{
+
+  background-color: var(--bg-combo-color);
+  border-radius: 12px;
+  padding: 12px;
+  margin: 12px 0;
+  
+}
 
   @media screen and (min-width:1024px) {
 
