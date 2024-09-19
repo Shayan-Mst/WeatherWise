@@ -125,6 +125,11 @@ flex-direction: column;
   outline: none;
 }
 
+.seven-day--forecast{
+background-color: var(--bg-combo-color);
+border-radius: 12px;
+padding: 8px 12px;
+}
 
 
   @media screen and (min-width:1024px) {
