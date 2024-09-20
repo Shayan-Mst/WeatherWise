@@ -175,6 +175,99 @@ padding: 8px 12px;
   margin:0 12px;
 
 }
+
+/* setting */
+
+.units{
+
+  background-color: var(--bg-combo-color);
+  padding: 18px;
+  border-radius: 12px;
+  margin: 12px 0;
+}
+
+.setting--items--2{
+
+  background-color: var(--bg-color);
+  padding: 5px 3px;
+  border-radius: 12px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  text-align: center;
+
+
+}
+
+.setting--items--3{
+
+  background-color: var(--bg-color);
+  padding: 5px 3px;
+  border-radius: 12px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  text-align: center;
+
+
+}
+
+
+.setting--items--4{
+
+  background-color: var(--bg-color);
+  padding: 5px 3px;
+  border-radius: 12px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  text-align: center;
+
+
+}
+
+.setting--selected--item{
+  background-color: var(--bg-combo-color);
+  border-radius: 9px;
+}
+
+.setting--items--toggle{
+  background-color: var(--bg-combo-color);
+  border-radius: 12px;
+  padding: 18px;
+  margin: 12px 0;
+}
+
+.toggle-checkbox {
+  width: 42px;
+  height: 20px;
+  appearance: none;
+  background-color: #ccc;
+  outline: none;
+  cursor: pointer;
+  border-radius: 10px;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+.toggle-checkbox::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+}
+.toggle-checkbox:checked {
+  background-color: #882ac2;
+}
+.toggle-checkbox:checked::before {
+  transform: translateX(22px);
+}
+
+
   @media screen and (min-width:1024px) {
 
     /* intro page */

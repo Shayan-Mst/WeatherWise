@@ -35,7 +35,7 @@
   }
 
   // Call the getLocation function when the page loads
-  window.onload = getLocation;
+//   window.onload = getLocation;
 
 // city
 
