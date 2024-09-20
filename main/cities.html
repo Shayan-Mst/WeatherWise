@@ -65,7 +65,7 @@
 
             <div class="lg:col-span-7">
 
-                <div ><input class="search" type="search" name="" id="" placeholder="Search for city"></div>
+                <div ><input class="search" type="search" id="searchInput" placeholder="Search for city"></div>
 
                 <div class="grid grid-cols-1 py-8">
 
@@ -266,6 +266,50 @@
 
         </div>
     </section>
+
+    <!-- Full Page Modal for Suggestions -->
+  <div id="searchModal" class="fixed inset-0 bg-gray-900 bg-opacity-95 hidden z-50 flex flex-col p-4">
+    <div class="md:w-2/3 lg:w-1/2 md:mx-auto">
+    <div ><input autofocus class="search" type="search" id="searchInputMain" placeholder="Search for city"></div>
+    
+    <div class="flex justify-between items-center pb-4 my-6">
+      <h2 class="text-lg font-semibold">Search Suggestions</h2>
+      <button id="closeModal" class="text-xl">&times;</button>
+    </div>
+
+    <div class="space-y-4">
+      <!-- Example suggestions (you can dynamically populate these) -->
+      <div class="city--added grid grid-cols-3 items-center">
+
+        <div class="justify-self-center">
+
+            <img class="w-16 h-16  mx-auto" src="./../pics/sun.png">
+        </div>
+
+        <div class="justify-self-start">
+
+            <p class="text-xl  font-semibold opacity-90">Berlin 
+                <svg class="inline current-location" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px">
+                    <path d="M12 2l7.5 19.5-7.5-5-7.5 5L12 2z"/>
+                  </svg>
+                  
+            </p>
+            <p class="opacity-60">2:56</p>
+        </div>
+
+        <div class="justify-self-end">
+
+            <span class="text-2xl  font-semibold opacity-90">27&deg;</span>
+        </div>
+
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+
     <nav class="nav--bar--md  lg:hidden">
 
        
@@ -315,5 +359,6 @@
 
 
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="./main.js"></script>
 </body>
 </html>
