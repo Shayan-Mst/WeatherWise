@@ -5,7 +5,10 @@
     --bg-nav : #161d28;
     --text-color: #F0F1F1;
     --button-bg:#0095FF;
+    --checkbox-bg:#9ea0a0;
     --button-text: white;
+    --bg-setting: #0B131E;
+    --bg-setting-select: #35455E;
   }
   
   
@@ -26,13 +29,16 @@
   }
 
 
-/* Dark Mode Styles */
+/* Light Mode Styles */
 body.light-mode {
-    --bg-color: #121212;
-    --text-color: white;
-    --card-bg: #1e1e1e;
-    --button-bg: #333;
+    --bg-color: #F5F5F5;
+    --bg-combo-color:#EAECEF;
+    --text-color: black;
+    --bg-nav : #d7d9dc;
     --button-text: white;
+    --bg-setting: #C4CAD3;
+    --bg-setting-select: #DDE0E4;
+
   }
 
   body.modal-open {
@@ -114,6 +120,16 @@ body.light-mode {
   width: 100%;
   height: 80px;
 }
+.nav--svg ,g,path,rect,polygon{
+
+  fill: var(--text-color);
+  stroke: var(--text-color);
+  color: var(--text-color);
+ 
+  
+}
+
+
 
 .daily--forecast{
 
@@ -188,7 +204,7 @@ padding: 8px 12px;
 
 .setting--items--2{
 
-  background-color: var(--bg-color);
+  background-color: var(--bg-setting);
   padding: 5px 3px;
   border-radius: 12px;
   width: 100%;
@@ -201,7 +217,7 @@ padding: 8px 12px;
 
 .setting--items--3{
 
-  background-color: var(--bg-color);
+  background-color: var(--bg-setting);
   padding: 5px 3px;
   border-radius: 12px;
   width: 100%;
@@ -215,7 +231,7 @@ padding: 8px 12px;
 
 .setting--items--4{
 
-  background-color: var(--bg-color);
+  background-color: var(--bg-setting);
   padding: 5px 3px;
   border-radius: 12px;
   width: 100%;
@@ -227,22 +243,24 @@ padding: 8px 12px;
 }
 
 .setting--selected--item{
-  background-color: var(--bg-combo-color);
+  background-color: var(--bg-setting-select);
   border-radius: 9px;
 }
 
 .setting--items--toggle{
-  background-color: var(--bg-combo-color);
+  background-color: var(--bg-setting-select);
   border-radius: 12px;
   padding: 18px;
   margin: 12px 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .toggle-checkbox {
   width: 42px;
   height: 20px;
-  appearance: none;
-  background-color: #ccc;
+  appearance: none; 
+  background-color: var(--checkbox-bg);
   outline: none;
   cursor: pointer;
   border-radius: 10px;
@@ -261,7 +279,7 @@ padding: 8px 12px;
   transition: transform 0.3s ease;
 }
 .toggle-checkbox:checked {
-  background-color: #882ac2;
+  background-color: var(--button-bg);
 }
 .toggle-checkbox:checked::before {
   transform: translateX(22px);
