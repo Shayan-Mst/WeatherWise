@@ -71,11 +71,11 @@
                     <article class="opacity-70 text-sm mb-8">TEMPERATURE</article>
 
                     <div class="setting--items--2">
-                        <span class="setting--selected--item">
+                        <span onclick="celsius()" id="Celsius" class="cursor-pointer">
 
                             Celsius
                         </span>
-                        <span>
+                        <span onclick="fahrenheit()" id="Fahrenheit" class="cursor-pointer">
 
                             Fahrenheit
                         </span>
@@ -85,16 +85,16 @@
                     <article class="opacity-70 text-sm my-8">WIND SPEED</article>
 
                     <div class="setting--items--3">
-                        <span >
+                        <span id="kmh" onclick="kmh()" class="cursor-pointer">
 
                             km/h
                         </span>
-                        <span class="setting--selected--item">
+                        <span id="ms" onclick="ms()" class="cursor-pointer">
 
                             m/s
                         </span>
 
-                        <span>
+                        <span id="knots" onclick="knots()" class="cursor-pointer">
 
                             knots
                         </span>
@@ -104,21 +104,21 @@
                     <article class="opacity-70 text-sm my-8">PRESSURE</article>
 
                     <div class="setting--items--4">
-                        <span >
+                        <span id="inches" onclick="inches()"  class="cursor-pointer">
 
                             inches
                         </span>
-                        <span class="setting--selected--item">
+                        <span onclick="mm()" id="mm" class=" cursor-pointer">
 
                             mm
                         </span>
 
-                        <span>
+                        <span onclick="hpa()" id="hPa" class="cursor-pointer">
 
                             hPa
                         </span>
 
-                        <span>
+                        <span onclick="kpa()" id="kPa" class="cursor-pointer">
 
                             kPa
                         </span>
@@ -128,11 +128,11 @@
 
 
                     <div class="setting--items--2">
-                        <span class="setting--selected--item">
+                        <span onclick="milimeter()" id="milimeters" class="cursor-pointer">
 
                             Milimeters
                         </span>
-                        <span>
+                        <span onclick="inch()" id="inch" class="cursor-pointer">
 
                             Inches
                         </span>
@@ -144,11 +144,11 @@
 
 
                     <div class="setting--items--2">
-                        <span class="setting--selected--item">
+                        <span onclick="km()" id="km" class="cursor-pointer">
 
                            Kilometers
                         </span>
-                        <span>
+                        <span onclick="mile()" id="mile" class="cursor-pointer">
 
                             Miles
                         </span>

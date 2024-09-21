@@ -245,6 +245,7 @@ padding: 8px 12px;
 .setting--selected--item{
   background-color: var(--bg-setting-select);
   border-radius: 9px;
+  transition: all 0.1s ease;
 }
 
 .setting--items--toggle{
