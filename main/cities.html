@@ -268,41 +268,28 @@
     </section>
 
     <!-- Full Page Modal for Suggestions -->
-  <div id="searchModal" class="fixed inset-0 bg-gray-900 bg-opacity-95 hidden z-50 flex flex-col p-4">
-    <div class="md:w-2/3 lg:w-1/2 md:mx-auto">
-    <div ><input autofocus class="search" type="search" id="searchInputMain" placeholder="Search for city"></div>
+  <div id="searchModal" class="fixed inset-0 bg-gray-900 bg-opacity-95 hidden z-50 flex flex-col p-4  overflow-y-scroll">
+    <div class="w-4/5 md:w-1/2 lg:w-1/3 mx-auto">
+    <div ><input oninput="getCitySearchList()" autofocus class="search" type="text" id="searchInputCity" placeholder="Search for city"></div>
     
     <div class="flex justify-between items-center pb-4 my-6">
       <h2  class="text-lg font-semibold text-white">Search Suggestions</h2>
       <button id="closeModal" class="text-xl text-white">&times;</button>
     </div>
 
-    <div class="space-y-4">
+    <div class="space-y-4" id="cityContainer">
       <!-- Example suggestions (you can dynamically populate these) -->
-      <div class="city--added grid grid-cols-3 items-center cursor-pointer">
+      <!-- <div class="city--added grid grid-cols-2 items-center cursor-pointer">
 
-        <div class="justify-self-center">
-
-            <img class="w-16 h-16  mx-auto" src="./../pics/sun.png">
-        </div>
-
-        <div class="justify-self-start">
-
-            <p class="text-xl  font-semibold opacity-90">Berlin 
-                <svg class="inline current-location" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px">
-                    <path d="M12 2l7.5 19.5-7.5-5-7.5 5L12 2z"/>
-                  </svg>
-                  
+       
+            <p id="cityName" class="text-xl  font-semibold opacity-90 justify-self-center">Berlin 
+               
             </p>
-            <p class="opacity-60">2:56</p>
-        </div>
+            <p id="prov-count" class="opacity-60 justify-self-center">2:56</p>
+        
+    </div> -->
 
-        <div class="justify-self-end">
 
-            <span class="text-2xl  font-semibold opacity-90">27&deg;</span>
-        </div>
-
-    </div>
     </div>
 </div>
 
@@ -361,5 +348,6 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="./dark_light.js"></script>
 <script src="./cities.js"></script>
+<script src="./citiesApi.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 // JavaScript to handle modal open/close
 const searchInput = document.getElementById('searchInput');
-const searchInputMain = document.getElementById('searchInputMain');
+const searchInputMain = document.getElementById('searchInputCity');
 const searchModal = document.getElementById('searchModal');
 const closeModal = document.getElementById('closeModal');
 
