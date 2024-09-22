@@ -1,3 +1,4 @@
+ const cityContainer = document.getElementById('cityContainer');
 
 async function  getCitySearchList(){
 
@@ -6,7 +7,7 @@ async function  getCitySearchList(){
 
     const api_key = 'LU024MAR7zmPGtev8NDH9uZTvJtpcpbU'
     const api = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${api_key}%20&q=${query.value}&language=en-us`
-    const cityContainer = document.getElementById('cityContainer');
+   
 
 try{
 
@@ -25,7 +26,9 @@ try{
                 // Create a new div for each city
                 const cityDiv = document.createElement('div');
                 cityDiv.className = 'city--added grid grid-cols-2 items-center cursor-pointer';
-        
+            
+
+                
                 // Create city name paragraph
                 const cityName = document.createElement('p');
                 cityName.id = city.Key;
@@ -58,4 +61,13 @@ catch(error){
 
 }
 
+
+
+// Event delegation for handling clicks on dynamically added list items
+cityContainer.addEventListener('click', function(event) {
+    if (event.target && event.target.classList.contains('city--added')) {
+      console.log('You clicked on:', event.target.textContent);
+      // Perform any action you want when a list item is clicked
+    }
+  });
 

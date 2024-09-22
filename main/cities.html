@@ -270,7 +270,24 @@
     <!-- Full Page Modal for Suggestions -->
   <div id="searchModal" class="fixed inset-0 bg-gray-900 bg-opacity-95 hidden z-50 flex flex-col p-4  overflow-y-scroll">
     <div class="w-4/5 md:w-1/2 lg:w-1/3 mx-auto">
-    <div ><input oninput="getCitySearchList()" autofocus class="search" type="text" id="searchInputCity" placeholder="Search for city"></div>
+    <div class="flex h-fit">
+        <input autofocus class="search" type="text" id="searchInputCity" placeholder="Search for city">
+        <button class="p-2" onclick="getCitySearchList()">
+        <svg  xmlns="http://www.w3.org/2000/svg" fill="#ffffff" width="20px" height="20px" viewBox="0 0 24 24" stroke="#ffffff">
+
+            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+            
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+            
+            <g id="SVGRepo_iconCarrier">
+            
+            <path d="M10.035,18.069a7.981,7.981,0,0,0,3.938-1.035l3.332,3.332a2.164,2.164,0,0,0,3.061-3.061l-3.332-3.332A8.032,8.032,0,0,0,4.354,4.354a8.034,8.034,0,0,0,5.681,13.715ZM5.768,5.768A6.033,6.033,0,1,1,4,10.035,5.989,5.989,0,0,1,5.768,5.768Z"/>
+            
+            </g>
+            
+            </svg>
+        </button>
+    </div>
     
     <div class="flex justify-between items-center pb-4 my-6">
       <h2  class="text-lg font-semibold text-white">Search Suggestions</h2>
