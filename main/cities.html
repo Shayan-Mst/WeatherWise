@@ -69,14 +69,18 @@
 
                 <div id="selected-city" class="grid grid-cols-1 py-8">
 
-                    <div  class="city--added grid grid-cols-3 items-center">
+                    <div  class="city--added grid grid-cols-6 items-center">
 
-                        <div class="justify-self-center">
-
-                            <img class="w-16 h-16  mx-auto" src="./../pics/sun.png">
+                        <div class="col-span-1 justify-self-center">
+                            <button id="deleteCity" class="text-red-500 text-2xl rounded-xl border border-red-600 px-2">&times;</button>
                         </div>
 
-                        <div class="justify-self-start">
+                        <div class="col-span-1">
+
+                            <img class="w-16 h-16" src="./../pics/sun.png">
+                        </div>
+
+                        <div class="justify-self-start col-span-2">
 
                             <p class="text-xl md:text-3xl font-semibold opacity-90">Berlin 
                                 <svg class="inline current-location" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px">
@@ -87,7 +91,7 @@
                             <p class="opacity-60">2:56</p>
                         </div>
 
-                        <div class="justify-self-end">
+                        <div class="justify-self-end col-span-2">
 
                             <span class="text-2xl md:text-4xl font-semibold opacity-90">27&deg;</span>
                         </div>
@@ -210,14 +214,8 @@
     </div>
     <div class="justify-self-end"><span class="text-xs">36<span>/21</span></div>
     
-    
-    
-    
-    
-    
                     </div>
                     
-                                      
                                      <br/>
                                      <hr class="opacity-30 mb-4"/>
                                      <div class="grid grid-cols-3 items-center ">
@@ -350,7 +348,7 @@
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="./dark_light.js"></script>
-<script src="./cities.js"></script>
+<script  src="./cities.js"></script>
 <script src="./citiesApi.js"></script>
 </body>
 </html>

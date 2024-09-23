@@ -26,14 +26,14 @@ try{
             data.forEach(city => {
                 // Create a new div for each city
                 const cityDiv = document.createElement('div');
-                cityDiv.className = 'city--added grid grid-cols-2 items-center cursor-pointer';
-            
+                cityDiv.className = 'city--added grid grid-cols-2 items-center cursor-pointer city--key';
+                cityDiv.name = city.LocalizedName;
                 cityDiv.id = city.Key;
 
                 
                 // Create city name paragraph
                 const cityName = document.createElement('p');
-                cityName.className = 'text-xl  font-semibold opacity-90 justify-self-start';
+                cityName.className = 'text-xl  font-semibold opacity-90 justify-self-start city--name';
                 cityName.textContent = city.LocalizedName; // Set the city name
         
                 // Create province/count paragraph
@@ -67,24 +67,22 @@ catch(error){
 cityContainer.addEventListener('click', function(event) {
     if (event.target && event.target.classList.contains('city--added')) {
      
-    
-        adding_city();
+        adding_city(event.target.id,event.target.name);
     }
   });
 
-  const selected_city = document.getElementById("selected-city")
+  
+  
 
 
-  function adding_city(){
-
-    console.log('clicked')
+  async function adding_city(id,name){
     
     fetch('http://localhost:3000/city', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name: "tehran", location_key: "22342" }),
+      body: JSON.stringify({ name: name, location_key: id }),
     })
     .then(response => response.json())
     .then(data => {
