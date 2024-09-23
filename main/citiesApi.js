@@ -1,4 +1,5 @@
  const cityContainer = document.getElementById('cityContainer');
+ 
 
 async function  getCitySearchList(){
 
@@ -27,17 +28,16 @@ try{
                 const cityDiv = document.createElement('div');
                 cityDiv.className = 'city--added grid grid-cols-2 items-center cursor-pointer';
             
+                cityDiv.id = city.Key;
 
                 
                 // Create city name paragraph
                 const cityName = document.createElement('p');
-                cityName.id = city.Key;
                 cityName.className = 'text-xl  font-semibold opacity-90 justify-self-start';
                 cityName.textContent = city.LocalizedName; // Set the city name
         
                 // Create province/count paragraph
                 const provCount = document.createElement('p');
-                provCount.id =city.Key;
                 provCount.className = 'opacity-60 text-xs justify-self-end';
                 provCount.textContent = `${city.AdministrativeArea.EnglishName} , ${city.Country.EnglishName}`; // Set a default value or modify as needed
         
@@ -66,8 +66,35 @@ catch(error){
 // Event delegation for handling clicks on dynamically added list items
 cityContainer.addEventListener('click', function(event) {
     if (event.target && event.target.classList.contains('city--added')) {
-      console.log('You clicked on:', event.target.textContent);
-      // Perform any action you want when a list item is clicked
+     
+    
+        adding_city();
     }
   });
 
+  const selected_city = document.getElementById("selected-city")
+
+
+  function adding_city(){
+
+    console.log('clicked')
+    
+    fetch('http://localhost:3000/city', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name: "tehran", location_key: "22342" }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => console.error('Error:', error));
+    
+
+
+
+    // const cityDiv = document.createElement('div');
+
+  }
