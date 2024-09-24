@@ -31,6 +31,8 @@ searchModal.addEventListener('click', (e) => {
 
 
 const selected_city = document.getElementById("selected-city")
+
+
 window.addEventListener('load',async()=>{
 
   //internal api
@@ -57,12 +59,6 @@ try{
   });
  
 
-
-
-  
-
-
-
   const api_key = 'LU024MAR7zmPGtev8NDH9uZTvJtpcpbU'
 
   jsonDataBefore.city.forEach(async city =>{
@@ -79,13 +75,12 @@ try{
         const data = await response.json(); // Parse the JSON data from the response
        
         const Fahrenheit = data[0].Temperature.Imperial.Value
-        const Celsius = data[0].Temperature.Metric.Value;
+        const Celsius = Math.round(data[0].Temperature.Metric.Value);
+        
+        const Time = data[0].LocalObservationDateTime.split('T')[1].split(':').slice(0, 2).join(':')
         
 
-        console.log(Celsius,Fahrenheit)
-
-
-
+    
 
          //parent div
     const cityDiv = document.createElement('div');
@@ -97,7 +92,7 @@ try{
 
     const deleteBtn = document.createElement('button')
     deleteBtn.className = "text-red-500 text-2xl rounded-xl border border-red-600 px-2"
-    deleteBtn.textContent = "&times;"
+    deleteBtn.innerHTML = "&times;"
     deleteBtn.id = "deleteCity"
     
     //image weather
@@ -105,6 +100,62 @@ try{
     imageDiv.className = 'col-span-1'
     const imageImg = document.createElement('img')
     imageImg.className = "w-16 h-16"
+    imageImg.src="./../pics/sun.png"
+
+    //info city
+
+    const infoDiv = document.createElement('div')
+
+    infoDiv.className = "justify-self-start col-span-2"
+
+    const nameP = document.createElement('p');
+    nameP.className = "text-xl md:text-3xl font-semibold opacity-90"
+    nameP.textContent = city.name;
+    const timeP = document.createElement('p')
+    timeP.className = "opacity-60"
+    timeP.textContent = Time;
+
+
+    //temperature 
+
+    const temperatureDiv = document.createElement('div');
+    temperatureDiv.className = "justify-self-end col-span-2"
+
+    const temperatureSpan = document.createElement('span');
+    temperatureSpan.className = "text-2xl md:text-4xl font-semibold opacity-90"
+    
+
+      localStorage.getItem('temperature') == 'fahrenheit'?temperatureSpan.innerHTML = `${Fahrenheit} &deg;`:temperatureSpan.innerHTML=`${Celsius} &deg;`
+      
+     
+
+
+     deleteDiv.appendChild(deleteBtn)
+     cityDiv.appendChild(deleteDiv)
+     
+     imageDiv.appendChild(imageImg)
+     cityDiv.appendChild(imageDiv)
+    
+     infoDiv.appendChild(nameP)
+     infoDiv.appendChild(timeP)
+     cityDiv.appendChild(infoDiv)
+    
+    
+     temperatureDiv.appendChild(temperatureSpan)
+     cityDiv.appendChild(temperatureDiv)
+     
+     selected_city.appendChild(cityDiv);
+
+  
+     
+    
+
+     
+     
+
+    
+    
+     
    
       }
 

@@ -84,15 +84,12 @@ cityContainer.addEventListener('click', function(event) {
       },
       body: JSON.stringify({ name: name, location_key: id }),
     })
-    .then(response => response.json())
+    .then(response => response.json(),
+    window.location.reload())
     .then(data => {
       console.log(data);
     })
     .catch(error => console.error('Error:', error));
     
-
-
-
-    // const cityDiv = document.createElement('div');
 
   }
