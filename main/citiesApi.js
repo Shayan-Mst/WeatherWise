@@ -93,3 +93,24 @@ cityContainer.addEventListener('click', function(event) {
     
 
   }
+
+  // Function to handle the delete request
+async function deleteCity(location_key) {
+  try {
+    const response = await fetch(`http://localhost:3000/city/${location_key}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data.message); // City deleted successfully
+    } else {
+      console.error('Error deleting city:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}

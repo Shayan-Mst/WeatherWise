@@ -79,7 +79,12 @@ window.addEventListener('load', () => {
 // Function to get user location
 function getLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition, showError);
+      navigator.geolocation.getCurrentPosition(showPosition, showError,
+        {
+          enableHighAccuracy: true, // Try to get the most accurate location (e.g., from GPS)
+          timeout: 5000, // Wait up to 5 seconds for a result
+          maximumAge: 0 // Do not use a cached position
+        });
     } 
   }
 
