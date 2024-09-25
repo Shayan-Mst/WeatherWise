@@ -1,13 +1,20 @@
 
+const regex = /(\d+)\?name=([\w\s]+)/;
+
+
 
 function getLocationKeyFromURL() {
     const params = new URLSearchParams(window.location.search);
-    return params.get('location_key');
+    const location_keys = params.get('location_key').match(regex)
+    const location_key = location_keys[1];
+    return location_key;
   }
 
   function getNameFromURL() {
     const params = new URLSearchParams(window.location.search);
-    return params.get('name');
+    const names = params.get('location_key').match(regex)
+    const name = names[2];
+    return name;
   }
 
   const api_key= "LU024MAR7zmPGtev8NDH9uZTvJtpcpbU"
@@ -16,16 +23,20 @@ function getLocationKeyFromURL() {
   const temperature = localStorage.getItem('temperature')
 
   async function fetchCityWeather() {
+
+   
     
-    current_condition()
-    hourly_condition()
-    daily_condition()
+      current_condition()
+      hourly_condition()
+      daily_condition()
+    
+  
     
    
   }
 
   async function current_condition(){
-    const api_current =  `http://dataservice.accuweather.com/currentconditions/v1/${location_key}?apikey=${api_key}&language=en-us&details=false`
+    const api_current =  `http://dataservice.accuweather.com/currentconditions/v1/${location_key}?apikey=${api_key}&language=en-us&details=true`
 
  
     if (location_key) {
@@ -52,24 +63,36 @@ const nameP = document.createElement('p')
 nameP.className =  'text-4xl font-bold'
 nameP.textContent = name_city;
 
+first_section.appendChild(nameP)
+
 //devider
 const dDiv = document.createElement('div');
 dDiv.className = 'p-1';
 
+first_section.appendChild(dDiv)
 //chance of either rain / snow / sleet
 const chanceP = document.createElement('p')
 chanceP.className = 'opacity-70 text-sm'
-chanceP.innerHTML = `chance of rain : ${data[0].rainprobablity} %`
+chanceP.innerHTML = `chance of rain : 17 %`
+first_section.appendChild(chanceP)
+//pressure
 
+const pressureP = document.createElement('p')
+const pressureType = localStorage.getItem('pressure')
+pressureP.className = 'opacity-70 text-sm'
+pressureP.innerHTML = pressureType === 'inHg'? `pressure : ${data[0].Pressure.Imperial.Value} inHg` : `pressure : ${data[0].Pressure.Metric.Value} mb`
+first_section.appendChild(pressureP)
 //br
 const br =  document.createElement('br')
-
+first_section.appendChild(br)
+first_section.appendChild(br)
 //temperature
-const temperatureDiv = document.createElement('p')
-temperatureDiv.className = 'text-6xl font-bold hidden md:block'
-temperatureDiv.innerHTML = `${data[0].temperature} &deg;`
+const temperatureType = localStorage.getItem('temperature')
+const temperatureP = document.createElement('p')
+temperatureP.className = 'text-6xl font-bold hidden md:block'
+temperatureP.innerHTML = temperatureType=='fahrenheit'?`${data[0].Temperature.Imperial.Value} &deg;`:`${data[0].Temperature.Metric.Value} &deg;`
 
-
+first_section.appendChild(temperatureP)
 //second section
 
 //image weather
@@ -78,14 +101,15 @@ const imageImg = document.createElement('img')
 imageImg.classList = 'w-48 h-48 mx-auto'
 imageImg.src = './../pics/sun.png'
 
+second_section.appendChild(imageImg)
 
 //temperature
 
-const tempDiv = document.createElement('p')
-tempDiv.className = 'text-6xl font-bold  md:hidden'
-tempDiv.innerHTML = `${data[0].temperature} &deg;`
+const tempP = document.createElement('p')
+tempP.className = 'text-6xl font-bold  md:hidden'
+tempP.innerHTML = temperatureType=='fahrenheit'?`${data[0].Temperature.Imperial.Value} &deg;`:`${data[0].Temperature.Metric.Value} &deg;`
 
-
+second_section.appendChild(tempP)
 
 //details real feel ,chance of rain , wind speed , UV Index
 
@@ -98,26 +122,30 @@ const uv_index = document.getElementById('uv--index')
 //real feel
 const feelDiv = document.createElement('div')
 feelDiv.className = 'mx-12 text-2xl font-semibold'
-feelDiv.innerHTML = `${data[0].RealFeel} &deg;`
+feelDiv.innerHTML = temperatureType=='fahrenheit'?`${data[0].RealFeelTemperature.Imperial.Value} &deg;`:`${data[0].RealFeelTemperature.Metric.Value} &deg;`
 
-//chance of any
-const chanceDiv = document.createElement('div')
-chanceDiv.className = 'mx-12 text-2xl font-semibold'
-chanceDiv.innerHTML = `${data[0].rainprobablity} %`
+//visiblity
+const visiblityDiv = document.createElement('div')
+const visiblityType = localStorage.getItem('distance')
+visiblityDiv.className = 'mx-12 text-2xl font-semibold'
+visiblityDiv.innerHTML =  visiblityType=='mile'?`${data[0].Visibility.Imperial.Value} Miles`:`${data[0].Visibility.Metric.Value} Km`
+
 
 //wind speed 
 
 
 const windDiv = document.createElement('div')
+const windType = localStorage.getItem('wind')
 windDiv.className = 'mx-12 text-2xl font-semibold'
-windDiv.innerHTML = `${data[0].wind} km/h`
+windDiv.innerHTML = ((windType=='ms')?`${(data[0].Wind.Speed.Metric.Value/3.6)} m/s`:(windType == 'knots')?`${(data[0].Wind.Speed.Metric.Value/1.852)} knots`:`${data[0].Visibility.Metric.Value} Km`) + `${data[0].Wind.Direction.Degrees} &deg; ${data[0].Wind.Direction.English}`
+
 
 
 //uv index
 
 const uvDiv = document.createElement('div')
 uvDiv.className = 'mx-12 text-2xl font-semibold'
-uvDiv.innerHTML = `${data[0].wind}`
+uvDiv.innerHTML = `${data[0].UVIndex}`
 
 
 

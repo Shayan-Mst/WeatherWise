@@ -100,7 +100,7 @@ async function currentconditions(){
       cityDiv.id = city.location_key;
       cityDiv.addEventListener('click',()=>{
 
-        window.location.href = `main.html?location_key=${city.location_key}?name=${city.name}`
+        window.location.href = `home.html?location_key=${city.location_key}?name=${city.name}`
 
       })
       

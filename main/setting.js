@@ -56,10 +56,9 @@ window.addEventListener('load', () => {
 
     //pressure
 
-    if(pressure == "inches") Inches.classList.add('setting--selected--item')
-    else if(pressure == "mm") Mm.classList.add('setting--selected--item')
-    else if(pressure == "hpa") hPa.classList.add('setting--selected--item')
-    else kPa.classList.add('setting--selected--item')
+    if(pressure == "inHg") inHG.classList.add('setting--selected--item')
+   
+    else mB.classList.add('setting--selected--item')
 
     //precipitation
 
@@ -208,44 +207,26 @@ function getLocation() {
 
    //pressure
 
-   let Inches = document.getElementById("inches")
-   let Mm = document.getElementById("mm")
-   let hPa = document.getElementById("hPa")
-   let kPa = document.getElementById("kPa")
+   let mB = document.getElementById("mb")
+   let inHG = document.getElementById("inHg")
+  
 
 
-   function inches(){
-    Inches.classList.add('setting--selected--item')
-    Mm.classList.remove('setting--selected--item')
-    kPa.classList.remove('setting--selected--item')
-    hPa.classList.remove('setting--selected--item')
-    localStorage.setItem('pressure','inches')
+   function mb(){
+    mB.classList.add('setting--selected--item')
+    inHG.classList.remove('setting--selected--item')
+   
+    localStorage.setItem('pressure','mb')
 
    }
 
-   function mm(){
-    Mm.classList.add('setting--selected--item')
-    Inches.classList.remove('setting--selected--item')
-    hPa.classList.remove('setting--selected--item')
-    kPa.classList.remove('setting--selected--item')
-    localStorage.setItem('pressure','mm')
+   function inHg(){
+    inHG.classList.add('setting--selected--item')
+    mB.classList.remove('setting--selected--item')
+   
+    localStorage.setItem('pressure','inHg')
    }
-   function hpa(){
-    hPa.classList.add('setting--selected--item')
-    kPa.classList.remove('setting--selected--item')
-    Inches.classList.remove('setting--selected--item')
-    Mm.classList.remove('setting--selected--item')
-    localStorage.setItem('pressure','hpa')
-
-   }
-   function kpa(){
-
-    kPa.classList.add('setting--selected--item')
-    Inches.classList.remove('setting--selected--item')
-    hPa.classList.remove('setting--selected--item')
-    Mm.classList.remove('setting--selected--item')
-    localStorage.setItem('pressure','kpa')
-   }
+  
 
 
 //  PRECIPITATION
