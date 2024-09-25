@@ -98,6 +98,11 @@ async function currentconditions(){
       const cityDiv = document.createElement('div');
       cityDiv.className = 'city--added grid grid-cols-6 items-center get--';
       cityDiv.id = city.location_key;
+      cityDiv.addEventListener('click',()=>{
+
+        window.location.href = `main.html?location_key=${city.location_key}?name=${city.name}`
+
+      })
       
   
       //delete div
@@ -109,7 +114,8 @@ async function currentconditions(){
       deleteBtn.className = "text-red-500 text-2xl rounded-xl border border-red-600 px-2"
       deleteBtn.innerHTML = "&times;"
       deleteBtn.id = "deleteCity"
-      deleteBtn.addEventListener('click', function () {
+      deleteBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
         const cityElement = this.closest('.city--added'); // Get the closest city container
         const locationKey = cityElement.id; // Get the location_key from the parent div's id
         deleteCity(locationKey); // Call the delete function with the locationKey
