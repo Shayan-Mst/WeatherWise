@@ -90,7 +90,7 @@ first_section.appendChild(br)
 const temperatureType = localStorage.getItem('temperature')
 const temperatureP = document.createElement('p')
 temperatureP.className = 'text-6xl font-bold hidden md:block'
-temperatureP.innerHTML = temperatureType=='fahrenheit'?`${data[0].Temperature.Imperial.Value} &deg;`:`${data[0].Temperature.Metric.Value} &deg;`
+temperatureP.innerHTML = temperatureType=='fahrenheit'?`${data[0].Temperature.Imperial.Value} &deg;`:`${Math.round(data[0].Temperature.Metric.Value)} &deg;`
 
 first_section.appendChild(temperatureP)
 //second section
@@ -107,14 +107,14 @@ second_section.appendChild(imageImg)
 
 const tempP = document.createElement('p')
 tempP.className = 'text-6xl font-bold  md:hidden'
-tempP.innerHTML = temperatureType=='fahrenheit'?`${data[0].Temperature.Imperial.Value} &deg;`:`${data[0].Temperature.Metric.Value} &deg;`
+tempP.innerHTML = temperatureType=='fahrenheit'?`${data[0].Temperature.Imperial.Value} &deg;`:`${Math.round(data[0].Temperature.Metric.Value)} &deg;`
 
 second_section.appendChild(tempP)
 
 //details real feel ,chance of rain , wind speed , UV Index
 
 const real_feel = document.getElementById('real--feel')
-const chance_rain = document.getElementById('chance--rain')
+const visiblity = document.getElementById('visiblity')
 const wind_speed = document.getElementById('wind--speed')
 const uv_index = document.getElementById('uv--index')
 
@@ -122,14 +122,15 @@ const uv_index = document.getElementById('uv--index')
 //real feel
 const feelDiv = document.createElement('div')
 feelDiv.className = 'mx-12 text-2xl font-semibold'
-feelDiv.innerHTML = temperatureType=='fahrenheit'?`${data[0].RealFeelTemperature.Imperial.Value} &deg;`:`${data[0].RealFeelTemperature.Metric.Value} &deg;`
-
+feelDiv.innerHTML = temperatureType=='fahrenheit'?`${data[0].RealFeelTemperature.Imperial.Value} &deg;`:`${Math.round(data[0].RealFeelTemperature.Metric.Value)} &deg;`
+real_feel.appendChild(feelDiv)
 //visiblity
 const visiblityDiv = document.createElement('div')
 const visiblityType = localStorage.getItem('distance')
 visiblityDiv.className = 'mx-12 text-2xl font-semibold'
 visiblityDiv.innerHTML =  visiblityType=='mile'?`${data[0].Visibility.Imperial.Value} Miles`:`${data[0].Visibility.Metric.Value} Km`
 
+visiblity.appendChild(visiblityDiv);
 
 //wind speed 
 
@@ -137,9 +138,9 @@ visiblityDiv.innerHTML =  visiblityType=='mile'?`${data[0].Visibility.Imperial.V
 const windDiv = document.createElement('div')
 const windType = localStorage.getItem('wind')
 windDiv.className = 'mx-12 text-2xl font-semibold'
-windDiv.innerHTML = ((windType=='ms')?`${(data[0].Wind.Speed.Metric.Value/3.6)} m/s`:(windType == 'knots')?`${(data[0].Wind.Speed.Metric.Value/1.852)} knots`:`${data[0].Visibility.Metric.Value} Km`) + `${data[0].Wind.Direction.Degrees} &deg; ${data[0].Wind.Direction.English}`
+windDiv.innerHTML = ((windType=='ms')?`${(data[0].Wind.Speed.Metric.Value/3.6)} m/s`:(windType == 'knots')?`${(data[0].Wind.Speed.Metric.Value/1.852)} knots`:`${data[0].Visibility.Metric.Value} km/h`) + " " + `${data[0].Wind.Direction.Degrees} &deg; ${data[0].Wind.Direction.English}`
 
-
+wind_speed.appendChild(windDiv)
 
 //uv index
 
@@ -148,6 +149,7 @@ uvDiv.className = 'mx-12 text-2xl font-semibold'
 uvDiv.innerHTML = `${data[0].UVIndex}`
 
 
+uv_index.appendChild(uvDiv)
 
 
         }
