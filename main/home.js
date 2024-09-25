@@ -57,7 +57,71 @@ const dDiv = document.createElement('div');
 dDiv.className = 'p-1';
 
 //chance of either rain / snow / sleet
-          
+const chanceP = document.createElement('p')
+chanceP.className = 'opacity-70 text-sm'
+chanceP.innerHTML = `chance of rain : ${data[0].rainprobablity} %`
+
+//br
+const br =  document.createElement('br')
+
+//temperature
+const temperatureDiv = document.createElement('p')
+temperatureDiv.className = 'text-6xl font-bold hidden md:block'
+temperatureDiv.innerHTML = `${data[0].temperature} &deg;`
+
+
+//second section
+
+//image weather
+
+const imageImg = document.createElement('img')
+imageImg.classList = 'w-48 h-48 mx-auto'
+imageImg.src = './../pics/sun.png'
+
+
+//temperature
+
+const tempDiv = document.createElement('p')
+tempDiv.className = 'text-6xl font-bold  md:hidden'
+tempDiv.innerHTML = `${data[0].temperature} &deg;`
+
+
+
+//details real feel ,chance of rain , wind speed , UV Index
+
+const real_feel = document.getElementById('real--feel')
+const chance_rain = document.getElementById('chance--rain')
+const wind_speed = document.getElementById('wind--speed')
+const uv_index = document.getElementById('uv--index')
+
+
+//real feel
+const feelDiv = document.createElement('div')
+feelDiv.className = 'mx-12 text-2xl font-semibold'
+feelDiv.innerHTML = `${data[0].RealFeel} &deg;`
+
+//chance of any
+const chanceDiv = document.createElement('div')
+chanceDiv.className = 'mx-12 text-2xl font-semibold'
+chanceDiv.innerHTML = `${data[0].rainprobablity} %`
+
+//wind speed 
+
+
+const windDiv = document.createElement('div')
+windDiv.className = 'mx-12 text-2xl font-semibold'
+windDiv.innerHTML = `${data[0].wind} km/h`
+
+
+//uv index
+
+const uvDiv = document.createElement('div')
+uvDiv.className = 'mx-12 text-2xl font-semibold'
+uvDiv.innerHTML = `${data[0].wind}`
+
+
+
+
         }
 
       } catch (error) {
