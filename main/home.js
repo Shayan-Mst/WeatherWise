@@ -24,11 +24,11 @@ function getLocationKeyFromURL() {
 
   async function fetchCityWeather() {
 
-   
+  
     
       current_condition()
       hourly_condition()
-      daily_condition()
+      // daily_condition()
     
   
     
@@ -168,17 +168,73 @@ uv_index.appendChild(uvDiv)
     if (location_key) {
     try{
 
-      const api_forecast_hour =  temperature == 'fahrenheit'?   `http://dataservice.accuweather.com/forecasts/v1/hourly/24hour/${location_key}?apikey=${api_key}&language=en-us&details=false&metric=false`
-      :`http://dataservice.accuweather.com/forecasts/v1/hourly/24hour/${location_key}?apikey=${api_key}&language=en-us&details=false&metric=true`
+      const api_forecast_hour =  temperature == 'fahrenheit'?   `http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${location_key}?apikey=${api_key}&language=en-us&details=false&metric=false`
+      :`http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${location_key}?apikey=${api_key}&language=en-us&details=false&metric=true`
      
 
       const response = await fetch(api_forecast_hour)
 
       const data = await response.json();
    
-      console.log('Weather hourly data:', data);
+  
+
+      const filteredData = data.filter((_, index) => index % 2 === 0);
+
+      if(response.status == 200){
 
 
+        const hourlyContainer = document.getElementById('hourly--forecast')
+        filteredData.forEach(condition => {
+
+          //div
+          const holderDiv = document.createElement('div')
+          holderDiv.className = 'text-center'
+
+          hourlyContainer.appendChild(holderDiv)
+
+          //time 
+          const timeSpan  = document.createElement('span')
+          timeSpan.className = 'opacity-70 text-xs'
+          const dateTime = condition.DateTime;
+          const timeMatch = dateTime.match(/T(\d{2}:\d{2})/);
+          const time = timeMatch[1];
+          timeSpan.innerHTML = time;
+
+          holderDiv.appendChild(timeSpan)
+          //devider
+          const deviderDiv = document.createElement('div')
+          deviderDiv.className ='my-2'
+
+
+          const deviderDiv2 = document.createElement('div')
+          deviderDiv2.className ='my-2'
+
+          
+
+          holderDiv.appendChild(deviderDiv)
+          //image 
+
+          const imgImage = document.createElement('img')
+          imgImage.src = './../pics/suncloud.png'
+          imgImage.className = 'w-12 h-12 mx-auto'
+
+          holderDiv.appendChild(imgImage)
+          holderDiv.appendChild(deviderDiv2)
+          //temperature
+
+          const tempSpan = document.createElement('span')
+          tempSpan.innerHTML = Math.round(condition.Temperature.Value);
+
+          holderDiv.appendChild(tempSpan)
+
+
+        })
+  
+
+
+      }
+
+  
      }
      catch(error){
        console.error('Error fetching weather data:', error);
@@ -201,7 +257,7 @@ uv_index.appendChild(uvDiv)
 
         const data = await response.json();
 
-        console.log('Weather data day:', data);
+       // console.log('Weather data day:', data);
 
       }
       catch(error){
