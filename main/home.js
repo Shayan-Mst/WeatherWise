@@ -28,7 +28,7 @@ function getLocationKeyFromURL() {
     
       current_condition()
       hourly_condition()
-      // daily_condition()
+      daily_condition()
     
   
     
@@ -248,16 +248,115 @@ uv_index.appendChild(uvDiv)
 
   async function daily_condition(){
 
-    const api_forecast_day = `http://dataservice.accuweather.com/forecasts/v1/daily/10day/${location_key}?apikey=${api_key}&language=en-us`
+    const api_forecast_day = temperature == 'fahrenheit'?  `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${location_key}?apikey=${api_key}&language=en-us&metric=false`:
+    `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${location_key}?apikey=${api_key}&language=en-us&metric=true`
+  
     if(location_key){
 
       try{
 
-        const response = fetch(api_forecast_day)
+        const response = await fetch(api_forecast_day)
 
         const data = await response.json();
 
-       // console.log('Weather data day:', data);
+        console.log('Weather data day:', data);
+
+        const fiveDayForecast = document.getElementById('seven-day--forecast')
+
+        if(response.status == 200){
+
+          data.DailyForecasts.forEach((condition,index) => {
+
+            //holder parent div
+            const holderDiv = document.createElement('div')
+            holderDiv.className = 'grid grid-cols-3 items-center'
+  
+            fiveDayForecast.appendChild(holderDiv)
+
+             //holder status div
+  
+             const holderStatusDiv = document.createElement('div')
+            
+ 
+             holderDiv.appendChild(holderStatusDiv)
+   
+             //image
+   
+             const imageImg = document.createElement('img')
+             imageImg.className = 'w-8 h-8 inline mx-2'
+             imageImg.src = './../pics/rain.png'
+ 
+             holderStatusDiv.appendChild(imageImg)
+   
+             //span 
+             const statusSpan = document.createElement('span')
+             statusSpan.className= 'text-xs'
+ 
+             statusSpan.innerHTML = Math.random() < 0.5 ? condition.Day.IconPhrase : condition.Night.IconPhrase;
+   
+             holderStatusDiv.appendChild(statusSpan)
+   
+  
+            //holder date div
+  
+            const holderDateDiv = document.createElement('div')
+
+            holderDateDiv.className = 'justify-self-center'
+
+            holderDiv.appendChild(holderDateDiv)
+  
+            //span 
+  
+            const dateSpan = document.createElement('span')
+            dateSpan.className= 'text-xs'
+            const datetime = condition.Date
+            const dateMatch = datetime.match(/^\d{4}-(\d{2}-\d{2})/);
+            const monthDay = dateMatch[1]; 
+
+            dateSpan.innerHTML = monthDay;
+
+            holderDateDiv.appendChild(dateSpan)
+  
+           
+              //holder temperature div
+  
+              const holderTemperatureDiv = document.createElement('div')
+              holderTemperatureDiv.className = 'justify-self-end'
+  
+              holderDiv.appendChild(holderTemperatureDiv)
+
+              //temperature high
+  
+              const tempHighSpan = document.createElement('span')
+              
+  
+              tempHighSpan.innerHTML = Math.round(condition.Temperature.Maximum.Value) + " "
+              holderTemperatureDiv.appendChild(tempHighSpan)
+  
+              //temperature low
+              const tempLowSpan = document.createElement('span')
+
+              tempLowSpan.innerHTML = "/" + " " + Math.round(condition.Temperature.Minimum.Value)
+
+              holderTemperatureDiv.appendChild(tempLowSpan)
+  
+  
+  
+              const br = document.createElement('br')
+              const hr = document.createElement('hr')
+              hr.className = 'opacity-30 mb-4'
+
+              if(index != 4){
+
+                fiveDayForecast.appendChild(br)
+              fiveDayForecast.appendChild(hr)
+              }
+              
+  
+          })
+        }
+
+     
 
       }
       catch(error){
