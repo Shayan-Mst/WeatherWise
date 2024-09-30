@@ -455,8 +455,7 @@ uv_index.appendChild(uvDiv)
 
         const data = await response.json();
 
-        console.log('Weather data day:', data);
-
+        
         const fiveDayForecast = document.getElementById('seven-day--forecast')
 
         if(response.status == 200){
@@ -465,7 +464,7 @@ uv_index.appendChild(uvDiv)
 
             //holder parent div
             const holderDiv = document.createElement('div')
-            holderDiv.className = 'grid grid-cols-3 items-center'
+            holderDiv.className = 'grid grid-cols-5 items-center'
   
             fiveDayForecast.appendChild(holderDiv)
 
@@ -474,6 +473,7 @@ uv_index.appendChild(uvDiv)
              const holderStatusDiv = document.createElement('div')
             
  
+             holderStatusDiv.className = 'col-span-3'
              holderDiv.appendChild(holderStatusDiv)
    
              //image
@@ -497,7 +497,7 @@ uv_index.appendChild(uvDiv)
   
             const holderDateDiv = document.createElement('div')
 
-            holderDateDiv.className = 'justify-self-center'
+            holderDateDiv.className = 'col-span-1'
 
             holderDiv.appendChild(holderDateDiv)
   
@@ -508,8 +508,9 @@ uv_index.appendChild(uvDiv)
             const datetime = condition.Date
             const dateMatch = datetime.match(/^\d{4}-(\d{2}-\d{2})/);
             const monthDay = dateMatch[1]; 
+            const replaceMonthDay = monthDay.replace('-','/')
 
-            dateSpan.innerHTML = monthDay;
+            dateSpan.innerHTML = replaceMonthDay;
 
             holderDateDiv.appendChild(dateSpan)
   
@@ -517,7 +518,7 @@ uv_index.appendChild(uvDiv)
               //holder temperature div
   
               const holderTemperatureDiv = document.createElement('div')
-              holderTemperatureDiv.className = 'justify-self-end'
+              holderTemperatureDiv.className = 'justify-self-end col-span-1'
   
               holderDiv.appendChild(holderTemperatureDiv)
 
@@ -572,7 +573,7 @@ uv_index.appendChild(uvDiv)
 
         const data = await response.json();
 
-        console.log('Weather data day:', data);
+       
 
         const fiveDayForecast = document.getElementById('seven-day--forecast')
 
@@ -582,7 +583,7 @@ uv_index.appendChild(uvDiv)
 
             //holder parent div
             const holderDiv = document.createElement('div')
-            holderDiv.className = 'grid grid-cols-3 items-center'
+            holderDiv.className = 'grid grid-cols-5 items-center'
   
             fiveDayForecast.appendChild(holderDiv)
 
@@ -590,6 +591,7 @@ uv_index.appendChild(uvDiv)
   
              const holderStatusDiv = document.createElement('div')
             
+             holderStatusDiv.className = 'col-span-3'
  
              holderDiv.appendChild(holderStatusDiv)
    
@@ -614,7 +616,7 @@ uv_index.appendChild(uvDiv)
   
             const holderDateDiv = document.createElement('div')
 
-            holderDateDiv.className = 'justify-self-center'
+            holderDateDiv.className = 'col-span-1'
 
             holderDiv.appendChild(holderDateDiv)
   
@@ -624,9 +626,10 @@ uv_index.appendChild(uvDiv)
             dateSpan.className= 'text-xs'
             const datetime = condition.Date
             const dateMatch = datetime.match(/^\d{4}-(\d{2}-\d{2})/);
-            const monthDay = dateMatch[1]; 
+            const monthDay = dateMatch[1];
+            const replaceMonthDay = monthDay.replace('-','/') 
 
-            dateSpan.innerHTML = monthDay;
+            dateSpan.innerHTML =replaceMonthDay;
 
             holderDateDiv.appendChild(dateSpan)
   
@@ -634,7 +637,7 @@ uv_index.appendChild(uvDiv)
               //holder temperature div
   
               const holderTemperatureDiv = document.createElement('div')
-              holderTemperatureDiv.className = 'justify-self-end'
+              holderTemperatureDiv.className = 'justify-self-end col-span-1'
   
               holderDiv.appendChild(holderTemperatureDiv)
 
