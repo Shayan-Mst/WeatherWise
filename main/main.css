@@ -175,6 +175,22 @@ padding: 12px;
 height: max-content;
 }
 
+/*about*/
+
+.about{
+  background-color: var(--bg-combo-color);
+border-radius: 12px;
+padding: 12px;
+height: max-content;
+margin: 12px 0;
+}
+
+.socials , .socials>*{
+  color: var(--text-color);
+  stroke: unset;
+  fill: var(--text-color);
+}
+
 /* City */
 
 .city--added{

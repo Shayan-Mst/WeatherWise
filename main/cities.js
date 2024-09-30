@@ -34,21 +34,60 @@ searchModal.addEventListener('click', (e) => {
 
 const selected_city = document.getElementById("selected-city")
 const api_key = 'LU024MAR7zmPGtev8NDH9uZTvJtpcpbU'
-const lat = localStorage.getItem('lat')
-const lon = localStorage.getItem('lon')
-
-const api_location = `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${api_key}&q=${lat}%2C${lon}&language=en-us&details=false`
 
 
-window.addEventListener('DOMContentLoaded',async()=>{
 
- await currentLocation()
+ async function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError,
+      {
+        enableHighAccuracy: true, // Try to get the most accurate location (e.g., from GPS)
+        timeout: 5000, // Wait up to 5 seconds for a result
+        maximumAge: 0 // Do not use a cached position
+      });
+  } 
+}
+
+// Success callback function to display the position
+ function showPosition(position) {
+  const lat = position.coords.latitude;
+  const lon = position.coords.longitude;
+   localStorage.setItem('lat',lat)
+   localStorage.setItem('lon',lon)
+
+   currentLocation()
+}
+
+// Error callback function to handle geolocation errors
+function showError(error) {
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      console.log("User denied the request for Geolocation.");
+      break;
+    case error.POSITION_UNAVAILABLE:
+      console.log("Location information is unavailable.");
+      break;
+    case error.TIMEOUT:
+      console.log("The request to get user location timed out.");
+      break;
+    case error.UNKNOWN_ERROR:
+      console.log("An unknown error occurred.");
+      break;
+  }
+}
+
+window.addEventListener('load',()=>{
+
+ getLocation()
+
+
  
 })
 
 
 async function currentconditions(){
 
+  console.log('current Condition')
   try{
 
    var jsonDataBefore;
@@ -72,9 +111,11 @@ async function currentconditions(){
     });
    
 
+    document.getElementById('c--n').innerHTML = jsonDataBefore.city[0].name
   
-    jsonDataBefore.city.forEach(async city =>{
+    jsonDataBefore.city.forEach(async (city,index) =>{
   
+
       //fetching added cities to json with location keys
   
      const api =  `http://dataservice.accuweather.com/currentconditions/v1/${city.location_key}?apikey=${api_key}&language=en-us&details=false`
@@ -93,6 +134,9 @@ async function currentconditions(){
           
   
       
+          if(index==0){
+            document.getElementById('temp').innerHTML = localStorage.getItem('temperature') == 'fahrenheit'?`${Fahrenheit} &deg;`:`${Celsius} &deg;`;
+          }
   
            //parent div
       const cityDiv = document.createElement('div');
@@ -218,8 +262,15 @@ async function currentconditions(){
 
 
 async function currentLocation() {
- 
-    if (lat && lon) {
+
+  const lat = localStorage.getItem('lat')
+  const lon = localStorage.getItem('lon')
+
+  
+  
+  const api_location = `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${api_key}&q=${lat}%2C${lon}&language=en-us&details=false`
+
+
       try {
         const response = await fetch(api_location);
         const data = await response.json();
@@ -234,9 +285,12 @@ async function currentLocation() {
           },
           body: JSON.stringify({ name: name, location_key: location_key,userLocation:true }),
         })
-        .then(response => response.json())
-        .then( currentconditions())
-        .catch(error => {
+        .then((response) =>{
+         
+            currentconditions()
+          
+         
+         } ).catch(error => {
           console.error('Error:', error);
          
         });
@@ -250,7 +304,7 @@ async function currentLocation() {
        
       }
     
-  };
+  
 }
 
 

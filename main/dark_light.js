@@ -25,8 +25,10 @@ window.addEventListener('load', () => {
     let savedTheme = localStorage.getItem('theme');
     if(savedTheme=='light'){
       body.classList.add('light-mode')
+
+      if(checkBox_color_mode)checkBox_color_mode.checked = true;
     
-      checkBox_color_mode.checked = true;
+      
     }
     else{
       body.classList.remove('light-mode')

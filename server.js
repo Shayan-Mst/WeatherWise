@@ -68,8 +68,6 @@ app.post('/current-city',(req,res) => {
 
   const newCity = req.body;
 
- 
-
 const cityExists = jsonDataBefore.city.some(city => city.location_key === newCity.location_key);
 
 if(cityExists){
@@ -83,7 +81,7 @@ fs.writeFileSync('./cities.json', JSON.stringify(jsonDataBefore, null, 1),(err)=
     console.error('Error writing file:', err);
     return res.status(500).json({ error: 'Error writing file' });
   }
-  res.json({ success: true, jsonDataBefore });
+ return res.status(200).json({ success: true, jsonDataBefore });
 });
 
 })
