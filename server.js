@@ -14,6 +14,10 @@ app.use(express.json());
 
  // Read the JSON file
  const jsonDataBefore = require('./cities.json');
+ // Route to serve main.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'main.html'));
+});
 
 // Define a route for the root URL "/"
 app.get('/city', (req, res) => {
