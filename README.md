@@ -17,7 +17,7 @@ Built with:
 - HTML5
 - Tailwind CSS
 - JavaScript (ES6)
-- OpenWeatherMap API
+- AccuWeather API
 
 ### 🔧 Backend:
 - Node.js
