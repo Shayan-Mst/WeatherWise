@@ -62,10 +62,12 @@ Simply open index.html in the browser or serve it using Live Server in VS Code.
 
     Get your API key from ACcuweather
 
-    Open script.js (frontend)
+   
 
-    Replace YOUR_API_KEY_HERE with your actual key:
+    Replace YOUR_API_KEY_HERE with your actual key in js frontend files:
 
 const apiKey = "YOUR_API_KEY_HERE";
+
+cities are stored in cities.json
 
 
