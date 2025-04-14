@@ -46,7 +46,6 @@ cd WeatherWise
 
 1. Install server dependencies
 
-cd server
 npm install
 
 2. Start the Node.js server
